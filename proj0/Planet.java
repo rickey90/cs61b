@@ -79,4 +79,24 @@ public class Planet {
 
 		return netForce;
 	}
+
+	//calculates and updates the positions for the planet based on the forces and changes in time
+	public void update(double dt, double fX, double fY) {
+		//calculate the acceleration
+		double xAcc = fX / mass;
+		double yAcc = fY / mass;
+
+		//update velocity
+		xxVel = xxVel + dt * xAcc;
+		yyVel = yyVel + dt * yAcc;
+
+		//update position
+		xxPos = xxPos + dt * xxVel;
+		yyPos = yyPos + dt * yyVel;
+	}
+
+	//draws the planets based on its xy coordinates
+	public void draw() {
+		StdDraw.picture(xxPos, yyPos, ("images/" + imgFileName));
+	}
 }
